@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Flat geometric tomato">
+  <defs>
+    <clipPath id="egClip"><circle cx="32" cy="37.8" r="22.2"/></clipPath>
+  </defs>
+  <circle cx="32" cy="37.8" r="22.2" fill="#b71c1c"/>
+  <g clip-path="url(#egClip)">
+    <circle cx="29.6" cy="34.8" r="22.2" fill="#ef5350"/>
+  </g>
+  <path d="M32 14.6V6.2" stroke="#2b7a3d" stroke-width="3.6" stroke-linecap="round"/>
+  <path d="M32 11 L34.35 18.36 L42.08 18.32 L35.8 22.84 L38.23 30.18 L32 25.6 L25.77 30.18 L28.2 22.84 L21.92 18.32 L29.65 18.36 Z"
+        fill="#1f6b34" stroke="#1f6b34" stroke-width="2" stroke-linejoin="round"/>
+</svg>

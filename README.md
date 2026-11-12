@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="icon.svg" width="88" alt="Kawaii tomato mascot">
+
 <h1>🍅 dsh-pomodoro-timer</h1>
 
 <p>A Pomodoro focus timer for the DeepSeek Harness Web UI — daily tracking, phase-change signals, and agent tools.</p>

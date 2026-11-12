@@ -274,8 +274,14 @@ window.__ModuleLoader__.load({
       '.pomo-titleLabel{align-items:center;gap:6px;min-width:0;display:inline-flex}',
       '.pomo-titleLabel svg{flex:none;width:14px;height:14px}',
       '.pomo-titleRule{border-top:.5px solid var(--dsw-alias-border-l2);margin-bottom:10px}',
-      '.pomo-big{color:var(--dsw-alias-label-primary);font-size:26px;line-height:32px;font-weight:500;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:10px;margin:2px 0 10px}',
+      '.pomo-bigrow{display:flex;align-items:center;gap:14px;margin:2px 0 12px}',
+      '.pomo-big{color:var(--dsw-alias-label-primary);font-size:26px;line-height:32px;font-weight:500;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:10px;margin:0}',
       '.pomo-bigLabel{color:var(--dsw-alias-label-tertiary);font-size:12px;font-weight:400;line-height:20px}',
+      '.pomo-mascot{position:relative;flex:none;width:76px;height:76px;display:grid;place-items:center}',
+      '.pomo-mascot .pomo-ring{position:absolute;inset:0;width:76px;height:76px}',
+      '.pomo-mascot .pomo-art{position:relative;width:56px;height:56px;display:block}',
+      '.pomo-mascot .pomo-art svg{width:56px;height:56px;display:block}',
+      '@media (prefers-reduced-motion: no-preference){.pomo-ringProg{transition:stroke-dashoffset .6s linear}}',
       '.pomo-details{color:var(--dsw-alias-label-tertiary);grid-template-columns:minmax(120px,auto) minmax(0,1fr);gap:6px 16px;margin:0 0 12px;display:grid}',
       '.pomo-details dt,.pomo-details dd{min-width:0;margin:0}',
       '.pomo-details dd{color:var(--dsw-alias-label-secondary);font-variant-numeric:tabular-nums;text-align:right}',
@@ -299,11 +305,99 @@ window.__ModuleLoader__.load({
 
     // ---- Artwork ----
 
-    function TomatoIcon() {
-      return h('svg', { viewBox: '0 0 16 16', 'aria-hidden': true }, [
-        h('circle', { key: 'body', cx: 8, cy: 9.6, r: 5.4, fill: '#d94a4a' }),
-        h('path', { key: 'collar', d: 'M2.2 5.2c3.6-3.1 8-3.1 11.6 0-1.9 1.1-4 1.7-5.8 1.7S4.1 6.3 2.2 5.2z', fill: '#4aa254' }),
-        h('path', { key: 'stem', d: 'M8 2.2c-.8 1.1-1.2 2.1-1.1 3.1.7.5 1.5.5 2.2 0 .1-1-.3-2-1.1-3.1z', fill: '#3f8f4f' }),
+    // Kawaii tomato with detail tiers: the face reads at >=24px; below that it
+    // turns to mush, so the small tier keeps only the bold silhouette.
+    let tomatoSeq = 0;
+
+    function kawaiiDefs(uid) {
+      const ids = { body: 'kwB' + uid, leaf: 'kwL' + uid, stem: 'kwS' + uid };
+      const defs = h('defs', null, [
+        h('radialGradient', { key: 'b', id: ids.body, cx: 0.34, cy: 0.24, r: 0.95 }, [
+          h('stop', { key: 0, offset: 0, stopColor: '#ff9c8f' }),
+          h('stop', { key: 1, offset: 0.36, stopColor: '#f2605a' }),
+          h('stop', { key: 2, offset: 0.74, stopColor: '#d93a38' }),
+          h('stop', { key: 3, offset: 1, stopColor: '#9c232a' }),
+        ]),
+        h('linearGradient', { key: 'l', id: ids.leaf, gradientUnits: 'userSpaceOnUse', x1: 20, y1: 10, x2: 44, y2: 24 }, [
+          h('stop', { key: 0, offset: 0, stopColor: '#95e07c' }),
+          h('stop', { key: 1, offset: 0.5, stopColor: '#52ad58' }),
+          h('stop', { key: 2, offset: 1, stopColor: '#2a6c3b' }),
+        ]),
+        h('linearGradient', { key: 's', id: ids.stem, x1: 0, y1: 0, x2: 1, y2: 1 }, [
+          h('stop', { key: 0, offset: 0, stopColor: '#78c963' }),
+          h('stop', { key: 1, offset: 1, stopColor: '#2c6f3c' }),
+        ]),
+      ]);
+      return { ids, defs };
+    }
+
+    function kawaiiBody(ids) {
+      return [
+        h('ellipse', { key: 'body', cx: 32, cy: 39, rx: 22, ry: 20.6, fill: `url(#${ids.body})` }),
+        h('ellipse', { key: 'hi', cx: 22.8, cy: 29.4, rx: 7.6, ry: 4.6, fill: '#fff', opacity: 0.26, transform: 'rotate(-32 22.8 29.4)' }),
+        h('ellipse', { key: 'hi2', cx: 19.8, cy: 27.4, rx: 2, ry: 1.3, fill: '#fff', opacity: 0.6, transform: 'rotate(-32 19.8 27.4)' }),
+        h('g', { key: 'leaf' }, [
+          h('path', { key: 0, d: 'M32 21c-4.2 1.4-8 4-10.4 7.7 3.7.7 7.3-.4 9.8-2.8z', fill: `url(#${ids.leaf})` }),
+          h('path', { key: 1, d: 'M32 21c4.2 1.4 8 4 10.4 7.7-3.7.7-7.3-.4-9.8-2.8z', fill: `url(#${ids.leaf})` }),
+          h('path', { key: 2, d: 'M32 20.8c-2.2-1.6-4.2-3.7-5.7-6.2 3 .3 5.3 1.4 6.9 3.1z', fill: `url(#${ids.leaf})` }),
+          h('path', { key: 3, d: 'M32 20.8c2.2-1.6 4.2-3.7 5.7-6.2-3 .3-5.3 1.4-6.9 3.1z', fill: `url(#${ids.leaf})` }),
+          h('path', { key: 4, d: 'M31 21c-.8-3.2-.2-6.7 1-9.4', fill: 'none', stroke: `url(#${ids.stem})`, strokeWidth: 2.8, strokeLinecap: 'round' }),
+        ]),
+      ];
+    }
+
+    function kawaiiFace(mood) {
+      const happy = mood === 'break' || mood === 'long';
+      const eyes = happy
+        ? [
+            h('path', { key: 'e0', d: 'M20.6 38.6c1.6-2.6 6-2.6 7.6 0', fill: 'none', stroke: '#332a2b', strokeWidth: 2.2, strokeLinecap: 'round' }),
+            h('path', { key: 'e1', d: 'M35.8 38.6c1.6-2.6 6-2.6 7.6 0', fill: 'none', stroke: '#332a2b', strokeWidth: 2.2, strokeLinecap: 'round' }),
+          ]
+        : [
+            h('ellipse', { key: 'w0', cx: 24.4, cy: 38.6, rx: 4.4, ry: 4.8, fill: '#fff' }),
+            h('ellipse', { key: 'w1', cx: 39.6, cy: 38.6, rx: 4.4, ry: 4.8, fill: '#fff' }),
+            h('circle', { key: 'p0', cx: 25.4, cy: 39.4, r: 2.3, fill: '#332a2b' }),
+            h('circle', { key: 'p1', cx: 40.6, cy: 39.4, r: 2.3, fill: '#332a2b' }),
+            h('circle', { key: 'g0', cx: 24.6, cy: 38.4, r: 0.8, fill: '#fff' }),
+            h('circle', { key: 'g1', cx: 39.8, cy: 38.4, r: 0.8, fill: '#fff' }),
+          ];
+      return h('g', { key: 'face' }, [
+        ...eyes,
+        h('ellipse', { key: 'b0', cx: 19.4, cy: 45.2, rx: 3.2, ry: 2, fill: '#ff8f8f', opacity: happy ? 0.8 : 0.6 }),
+        h('ellipse', { key: 'b1', cx: 44.6, cy: 45.2, rx: 3.2, ry: 2, fill: '#ff8f8f', opacity: happy ? 0.8 : 0.6 }),
+        happy
+          ? h('path', { key: 'm', d: 'M27.6 44.2c2.2 4 6.6 4 8.8 0', fill: 'none', stroke: '#7d1d26', strokeWidth: 2.2, strokeLinecap: 'round' })
+          : h('path', { key: 'm', d: 'M28.4 44.6c1.8 3 5.4 3 7.2 0', fill: 'none', stroke: '#7d1d26', strokeWidth: 2, strokeLinecap: 'round' }),
+      ]);
+    }
+
+    function TomatoIcon({ size = 14, mood = 'focus' }) {
+      const rawId = React.useId ? React.useId() : 't' + (++tomatoSeq);
+      const uid = String(rawId).replace(/[^a-zA-Z0-9]/g, '');
+      const { ids, defs } = kawaiiDefs(uid);
+      const full = size >= 24;
+      return h('svg', { viewBox: '0 0 64 64', width: size, height: size, 'aria-hidden': true }, [
+        defs,
+        ...kawaiiBody(ids),
+        full ? kawaiiFace(mood) : null,
+      ]);
+    }
+
+    const PHASE_RING = { focus: '#d93a38', break: '#52ad58', long: '#f08c00', idle: '#d93a38' };
+
+    function Mascot({ phase, remainingMs, config }) {
+      const minutes = phase === 'focus' ? config.focusMinutes : phase === 'long' ? config.longBreakMinutes : config.breakMinutes;
+      const duration = minutes * 60000;
+      const frac = phase === 'idle' || duration <= 0 ? 0 : Math.min(1, Math.max(0, 1 - remainingMs / duration));
+      const R = 33;
+      const C = 2 * Math.PI * R;
+      const color = PHASE_RING[phase] || PHASE_RING.focus;
+      return h('span', { className: 'pomo-mascot', 'aria-hidden': true }, [
+        h('svg', { key: 'ring', className: 'pomo-ring', viewBox: '0 0 76 76' }, [
+          h('circle', { key: 'track', cx: 38, cy: 38, r: R, fill: 'none', stroke: 'var(--dsw-alias-border-l2)', strokeWidth: 4 }),
+          h('circle', { key: 'prog', className: 'pomo-ringProg', cx: 38, cy: 38, r: R, fill: 'none', stroke: color, strokeWidth: 4, strokeLinecap: 'round', strokeDasharray: C, strokeDashoffset: C * (1 - frac), transform: 'rotate(-90 38 38)' }),
+        ]),
+        h('span', { key: 'art', className: 'pomo-art' }, h(TomatoIcon, { size: 56, mood: phase })),
       ]);
     }
 
@@ -398,9 +492,12 @@ window.__ModuleLoader__.load({
           h('span', { key: 'label', className: 'pomo-titleLabel' }, [h(TomatoIcon, { key: 'icon' }), t('dialog.title')]),
         ]),
         h('div', { key: 'rule', className: 'pomo-titleRule', 'aria-hidden': true }),
-        h('div', { key: 'big', className: 'pomo-big' }, [
-          h('span', { key: 'time' }, mmss(remainingMs)),
-          h('span', { key: 'phase', className: 'pomo-bigLabel' }, t(labelKey)),
+        h('div', { key: 'bigrow', className: 'pomo-bigrow' }, [
+          h(Mascot, { key: 'mascot', phase: s.phase, remainingMs, config: s.config }),
+          h('div', { key: 'big', className: 'pomo-big' }, [
+            h('span', { key: 'time' }, mmss(remainingMs)),
+            h('span', { key: 'phase', className: 'pomo-bigLabel' }, t(labelKey)),
+          ]),
         ]),
         h('dl', { key: 'details', className: 'pomo-details' }, [
           h('dt', { key: 'rounds-dt' }, t('dialog.rounds')),
