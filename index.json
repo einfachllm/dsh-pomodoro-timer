@@ -1,0 +1,75 @@
+{
+  "format": 1,
+  "title": {
+    "en": "einfachllm DSH bundles",
+    "de": "einfachllm DSH-Bundles"
+  },
+  "description": {
+    "en": "Bundles for the DeepSeek Harness maintained by einfachllm.",
+    "de": "Bundles für den DeepSeek Harness, gepflegt von einfachllm."
+  },
+  "metadata": {
+    "categories": {
+      "timer": {
+        "title": {
+          "en": "Timers",
+          "de": "Timer"
+        }
+      }
+    },
+    "labels": {},
+    "sortKeys": {}
+  },
+  "plugins": [
+    {
+      "name": "@einfachllm/dsh-pomodoro-timer",
+      "title": {
+        "en": "Pomodoro timer",
+        "de": "Pomodoro-Timer"
+      },
+      "description": {
+        "en": "Pomodoro focus timer in the composer dock: tracking, configurable lengths, phase-change signals, and agent tools.",
+        "de": "Pomodoro-Fokus-Timer im Composer-Dock: Tracking, einstellbare Längen, Phasenwechsel-Signale und Agent-Tools."
+      },
+      "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPGNpcmNsZSBjeD0iMzIiIGN5PSIzOCIgcj0iMjAiIGZpbGw9IiNkOTRhNGEiLz4KICA8cGF0aCBkPSJNMzEgMjBjLTEuNiAyLjQtMi4yIDQuNC0yIDYuNCAxIC45IDIuOS45IDMuOSAwIC4zLTItLjQtNC0xLjktNi40eiIgZmlsbD0iIzNmOGY0ZiIvPgogIDxwYXRoIGQ9Ik0zMiAxOGMtMSAyLTEuNCAzLjYtMS4yIDUuMi44LjYgMS43LjYgMi40IDAgLjItMS42LS4yLTMuMi0xLjItNS4yeiIgZmlsbD0iIzJmNmIzOCIvPgogIDxwYXRoIGQ9Ik0xMyAzMGM2LTYuNSAxMi41LTkuNSAxOS05LjVTNDUgMjMuNSA1MSAzMGMtNS4yIDIuNi0xMS42IDQtMTkgNHMtMTMuOC0xLjQtMTktNHoiIGZpbGw9IiM0YWEyNTQiLz4KICA8cGF0aCBkPSJNMzIgMjAuNUMyNSAyNiAxOS41IDMzIDE3LjUgNDFjMy05IDgtMTYuNSAxNC41LTIwLjV6IiBmaWxsPSIjM2E3ZDQ0IiBvcGFjaXR5PSIuNiIvPgo8L3N2Zz4K",
+      "author": "einfachllm",
+      "homepage": "https://github.com/einfachllm/dsh-pomodoro-timer#readme",
+      "repository": {
+        "url": "https://github.com/einfachllm/dsh-pomodoro-timer"
+      },
+      "metadata": {
+        "category": "timer",
+        "keywords": [
+          "pomodoro",
+          "timer",
+          "focus",
+          "deepseek-harness"
+        ],
+        "labels": [],
+        "sortKeys": {}
+      },
+      "versions": [
+        {
+          "version": "1.2.1",
+          "publishTimestamp": 1765565631,
+          "source": {
+            "type": "npm"
+          },
+          "engines": {
+            "dsh": ">=0.2.2-rc.1"
+          }
+        },
+        {
+          "version": "1.2.0",
+          "publishTimestamp": 1765564607,
+          "source": {
+            "type": "npm"
+          },
+          "engines": {
+            "dsh": ">=0.2.2-rc.1"
+          }
+        }
+      ]
+    }
+  ]
+}
