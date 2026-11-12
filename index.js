@@ -1,5 +1,4 @@
 import z from '@deepseek-ai/schemastery';
-import { defineTool } from '@deepseek-ai/dsh-tools';
 
 /** Pomodoro durations and signals, editable in the General settings section. */
 export const Config = z.object({
@@ -18,36 +17,54 @@ export const inject = ['webServer', 'tools'];
 const ROUTE = '/pomodoro-timer/api';
 const CONTROL_ACTIONS = ['start', 'pause', 'skip', 'reset'];
 
-export const STATUS_SCHEMA = {
+export // Tool schemas are embedded in the compiled JSON-schema shape the tool registry
+// validates against, so the bundle imports no DSH packages beyond schemastery:
+// profile installs do not install peer dependencies, and every DSH package this
+// bundle previously pulled in (dsh-tools) carries a peer chain the profile
+// deliberately keeps slim.
+const STATUS_OUTPUT_SCHEMA = {
   type: 'object',
   additionalProperties: false,
   properties: {
-    phase: { type: 'string', enum: ['idle', 'focus', 'break', 'long'], required: true, description: 'Current phase.' },
-    running: { type: 'boolean', required: true, description: 'Whether the countdown is running.' },
-    endsAt: { type: 'number', required: true, description: 'Epoch milliseconds when the running phase ends; 0 when paused.' },
-    remainingMs: { type: 'number', required: true, description: 'Remaining milliseconds of the current phase.' },
-    focusCount: { type: 'integer', required: true, description: 'Completed focus rounds today.' },
-    focusMs: { type: 'integer', required: true, description: 'Total focused milliseconds today.' },
-    day: { type: 'string', required: true, description: 'Local day the counters belong to.' },
+    phase: { type: 'string', description: 'Current phase.', enum: ['idle', 'focus', 'break', 'long'] },
+    running: { type: 'boolean', description: 'Whether the countdown is running.' },
+    endsAt: { type: 'number', description: 'Epoch milliseconds when the running phase ends; 0 when paused.' },
+    remainingMs: { type: 'number', description: 'Remaining milliseconds of the current phase.' },
+    focusCount: { type: 'integer', description: 'Completed focus rounds today.' },
+    focusMs: { type: 'integer', description: 'Total focused milliseconds today.' },
+    day: { type: 'string', description: 'Local day the counters belong to.' },
     config: {
       type: 'object',
       additionalProperties: false,
-      required: true,
       properties: {
-        focusMinutes: { type: 'integer', required: true },
-        breakMinutes: { type: 'integer', required: true },
-        longBreakMinutes: { type: 'integer', required: true },
-        roundsPerLongBreak: { type: 'integer', required: true },
-        autoStart: { type: 'string', enum: ['all', 'break', 'off'], required: true },
-        sound: { type: 'boolean', required: true },
-        desktopNotifications: { type: 'boolean', required: true },
+        focusMinutes: { type: 'integer' },
+        breakMinutes: { type: 'integer' },
+        longBreakMinutes: { type: 'integer' },
+        roundsPerLongBreak: { type: 'integer' },
+        autoStart: { type: 'string', enum: ['all', 'break', 'off'] },
+        sound: { type: 'boolean' },
+        desktopNotifications: { type: 'boolean' },
       },
+      required: ['focusMinutes', 'breakMinutes', 'longBreakMinutes', 'roundsPerLongBreak', 'autoStart', 'sound', 'desktopNotifications'],
     },
   },
+  required: ['phase', 'running', 'endsAt', 'remainingMs', 'focusCount', 'focusMs', 'day', 'config'],
+};
+
+const CONTROL_PARAMETERS_SCHEMA = {
+  type: 'object',
+  properties: {
+    action: {
+      type: 'string',
+      description: 'Timer action: start, pause, skip, or reset.',
+      enum: CONTROL_ACTIONS,
+    },
+  },
+  required: ['action'],
 };
 
 const textOutput = {
-  schema: STATUS_SCHEMA,
+  schema: STATUS_OUTPUT_SCHEMA,
   render: (_args, value) => [{ type: 'text', text: JSON.stringify(value) }],
 };
 
@@ -229,31 +246,27 @@ export function apply(ctx, config) {
   }));
 
   // Agent visibility and shared control: both tools run the exact same state machine.
-  ctx.effect(() => ctx.tools.register(defineTool({
+  ctx.effect(() => ctx.tools.register({
     name: 'pomodoro_status',
     description: "Read the current state of the user's Pomodoro focus timer: phase (idle/focus/break/long), whether it is running, remaining milliseconds, and today's completed focus rounds and total focus time.",
-    parameters: {},
+    parameters: { type: 'object', properties: {} },
     output: textOutput,
     isConcurrencySafe: () => true,
     async execute() {
       return status();
     },
-  })));
+  }));
 
-  ctx.effect(() => ctx.tools.register(defineTool({
+  ctx.effect(() => ctx.tools.register({
     name: 'pomodoro_control',
     description: "Control the user's Pomodoro focus timer. start begins or resumes the countdown (a fresh timer starts a focus phase); pause freezes it; skip jumps to the next phase without counting the current one; reset clears today's rounds and focus time.",
-    parameters: {
-      action: {
-        type: 'string',
-        enum: CONTROL_ACTIONS,
-        required: true,
-        description: 'Timer action: start, pause, skip, or reset.',
-      },
-    },
+    parameters: CONTROL_PARAMETERS_SCHEMA,
     output: textOutput,
     async execute(args) {
+      if (!args || !CONTROL_ACTIONS.includes(args.action)) {
+        throw new Error('pomodoro_control requires action: start | pause | skip | reset');
+      }
       return control(args.action);
     },
-  })));
+  }));
 }
