@@ -1,0 +1,4 @@
+- insert:
+    - id: pomodoro-timer
+      name: '@einfachllm/dsh-pomodoro-timer'
+      config: {}
