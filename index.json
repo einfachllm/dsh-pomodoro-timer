@@ -51,7 +51,7 @@
       "versions": [
         {
           "version": "1.2.1",
-          "publishTimestamp": 1765565631,
+          "publishTimestamp": 1794504831,
           "source": {
             "type": "npm"
           },
@@ -61,7 +61,7 @@
         },
         {
           "version": "1.2.0",
-          "publishTimestamp": 1765564607,
+          "publishTimestamp": 1794503807,
           "source": {
             "type": "npm"
           },
