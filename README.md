@@ -1,6 +1,22 @@
-# @einfachllm/dsh-pomodoro-timer
+<div align="center">
 
-English | [Deutsch](#deutsch)
+<h1>🍅 dsh-pomodoro-timer</h1>
+
+<p>A Pomodoro focus timer for the DeepSeek Harness Web UI — daily tracking, phase-change signals, and agent tools.</p>
+
+<p>
+  <strong>English</strong> · <a href="#deutsch">Deutsch</a>
+</p>
+
+<p>
+  <a href="https://www.npmjs.com/package/@einfachllm/dsh-pomodoro-timer"><img alt="npm version" src="https://img.shields.io/npm/v/@einfachllm/dsh-pomodoro-timer.svg?logo=npm"></a>
+  <a href="https://www.npmjs.com/package/@einfachllm/dsh-pomodoro-timer"><img alt="npm downloads" src="https://img.shields.io/npm/d18m/@einfachllm/dsh-pomodoro-timer.svg"></a>
+  <a href="https://www.npmjs.com/package/@einfachllm/dsh-pomodoro-timer"><img alt="Node.js version" src="https://img.shields.io/node/v/@einfachllm/dsh-pomodoro-timer.svg?logo=node.js"></a>
+  <a href="https://github.com/deepseek-ai/deepseek-harness"><img alt="DSH rc releases" src="https://img.shields.io/badge/DSH-rc%20releases-4B8BF5"></a>
+  <a href="https://github.com/einfachllm/dsh-pomodoro-timer/blob/main/LICENSE"><img alt="MIT license" src="https://img.shields.io/npm/l/@einfachllm/dsh-pomodoro-timer.svg"></a>
+</p>
+
+</div>
 
 A [DeepSeek Harness](https://github.com/deepseek-ai) bundle that adds a Pomodoro focus timer to the web composer dock: a tomato pill under the chat input, Pomodoro tracking, configurable durations in the General settings, phase-change signals, and two agent tools so your assistant can read and control the timer.
 

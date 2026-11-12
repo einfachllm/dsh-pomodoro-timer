@@ -1,8 +1,11 @@
 {
   "name": "@einfachllm/dsh-pomodoro-timer",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Pomodoro focus timer for the DeepSeek Harness composer dock: tracking, settings, phase-change signals, and agent tools.",
   "license": "MIT",
+  "engines": {
+    "node": ">=24.9.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/einfachllm/dsh-pomodoro-timer.git"
