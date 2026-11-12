@@ -24,9 +24,17 @@ A [DeepSeek Harness](https://github.com/deepseek-ai) bundle that adds a Pomodoro
 
 ## Screenshots
 
-| Focus dialog (dark) | Mascot detail tiers |
+| Focus dialog (dark) | Break dialog (light) |
 |---|---|
-| ![Focus dialog with progress ring, goal/streak and weekly chart](docs/dialog-dark.png) | ![Kawaii tomato at 56/32 px with face, clean silhouette at 20/14 px, break mood](docs/mascot-tiers.png) |
+| ![Focus dialog with progress ring, goal/streak and weekly chart](docs/dialog-dark.png) | ![Light-theme break dialog with green progress ring](docs/dialog-light.png) |
+
+| Composer dock pill | General settings |
+|---|---|
+| ![Tomato pill under the composer next to session statistics](docs/composer-dark.png) | ![Pomodoro settings rows: lengths, auto-start, signal, goal, agent, webhook](docs/settings-dark.png) |
+
+| Phase-change toast | Mascot detail tiers |
+|---|---|
+| ![In-app toast announcing a completed focus phase](docs/toast-dark.png) | ![Kawaii tomato at 56/32 px with face, clean silhouette at 20/14 px, break mood](docs/mascot-tiers.png) |
 
 The mascot keeps its full face at dialog size and degrades to a clean silhouette in the 14 px pill, so it never turns to mush. Break phases swap to a happy closed-eye expression; the ring is colored per phase (focus red, break green, long break amber).
 
