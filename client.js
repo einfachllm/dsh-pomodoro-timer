@@ -70,6 +70,19 @@ window.__ModuleLoader__.load({
       zh: { title: '番茄钟', focusDone: '专注结束 — 该休息了。', breakDone: '休息结束 — 回到专注。' },
     };
 
+    // The DSH locale service resolves FLAT dot-keys (e.g. "dialog.title"), not nested
+    // objects. Flatten the readable nested dictionaries before registering them.
+    function flattenDict(node, prefix, out) {
+      for (const k of Object.keys(node)) {
+        const v = node[k];
+        const key = prefix ? prefix + '.' + k : k;
+        if (v && typeof v === 'object') flattenDict(v, key, out);
+        else out[key] = v;
+      }
+      return out;
+    }
+    const FLAT_DICTS = Object.fromEntries(Object.entries(DICTS).map(([lang, d]) => [lang, flattenDict(d, '', {})]));
+
     const DEFAULT_CONFIG = {
       focusMinutes: 25, breakMinutes: 5, longBreakMinutes: 15, roundsPerLongBreak: 4,
       autoStart: 'all', sound: true, desktopNotifications: false,
@@ -468,7 +481,7 @@ window.__ModuleLoader__.load({
     return {
       inject: ['slots', 'locale', 'configForms'],
       apply(ctx) {
-        ctx.effect(() => ctx.locale.register(NS, DICTS));
+        ctx.effect(() => ctx.locale.register(NS, FLAT_DICTS));
         try {
           const snap = ctx.locale.getSnapshot();
           const id = String((snap && (snap.locale || snap.id || snap.current)) || '');
