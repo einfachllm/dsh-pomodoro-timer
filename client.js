@@ -62,12 +62,102 @@ window.__ModuleLoader__.load({
           webhook: { title: 'Webhook', desc: '阶段完成时向该 URL 发送 JSON 事件（可选）。', placeholder: 'https://…' },
         },
       },
+      ru: {
+        pill: { focus: 'Фокус', break: 'Перерыв', long: 'Длинный перерыв', idle: 'Фокус' },
+        dialog: {
+          title: 'Таймер фокуса', start: 'Старт', pause: 'Пауза', skip: 'Пропустить фазу', reset: 'Сбросить день',
+          rounds: 'Фокус-раундов сегодня', focusTime: 'Время фокуса сегодня', sessionTime: 'Сессия идёт',
+          nextIsLong: 'Длинный перерыв после этого раунда', toastFocus: 'Фокус завершён — начался перерыв.', toastBreak: 'Перерыв окончен — снова фокус.',
+          goal: 'Цель на день', streak: 'Серия', week: 'Последние 7 дней',
+        },
+        settings: {
+          durations: { title: 'Длительности помодоро', desc: 'Минуты фокуса, короткого и длинного перерыва и раундов до длинного перерыва.', focus: 'Фокус', break: 'Перерыв', long: 'Длинный', rounds: 'Раунды' },
+          auto: { title: 'Автозапуск фаз', desc: 'Переходить к следующей фазе без клика.', all: 'Все фазы', break: 'Только перерывы', off: 'Вручную' },
+          signal: { title: 'Сигнал смены фазы', desc: 'Короткий звук и уведомление при завершении фазы.', sound: 'Звук', desktop: 'Уведомление', preview: 'Прослушать' },
+          goal: { title: 'Цель на день', desc: 'Сколько фокус-раундов в день вы планируете.', label: 'раундов/день' },
+          agent: { title: 'Интеграция с агентом', desc: 'Модель видит ваш фокус и предлагает перерыв в конце раунда.', context: 'Контекст фокуса', hints: 'Подсказка перерыва' },
+          webhook: { title: 'Webhook', desc: 'POST JSON-события на этот URL при завершении фазы (опционально).', placeholder: 'https://…' },
+        },
+      },
+      ja: {
+        pill: { focus: '集中', break: '休憩', long: '長い休憩', idle: '集中' },
+        dialog: {
+          title: '集中タイマー', start: '開始', pause: '一時停止', skip: 'フェーズをスキップ', reset: '今日をリセット',
+          rounds: '今日の集中ラウンド', focusTime: '今日の集中時間', sessionTime: 'セッション経過',
+          nextIsLong: 'このラウンドの後は長い休憩', toastFocus: '集中完了 — 休憩開始。', toastBreak: '休憩終了 — 集中に戻ります。',
+          goal: '今日の目標', streak: '連続日数', week: '過去7日間',
+        },
+        settings: {
+          durations: { title: 'ポモドーロの長さ', desc: '集中・短い休憩・長い休憩の分数と、長い休憩までのラウンド数。', focus: '集中', break: '休憩', long: '長い', rounds: 'ラウンド' },
+          auto: { title: 'フェーズを自動開始', desc: 'クリックなしで次のフェーズへ。', all: 'すべて', break: '休憩のみ', off: '手動' },
+          signal: { title: 'フェーズ変更シグナル', desc: 'フェーズ完了時のビープ音と通知。', sound: 'ビープ', desktop: 'デスクトップ通知', preview: '試聴' },
+          goal: { title: '今日の目標', desc: '1日に完了したい集中ラウンド数。', label: 'ラウンド/日' },
+          agent: { title: 'エージェント連携', desc: 'モデルが集中状態を把握し、ラウンド終了時に休憩を提案。', context: '集中コンテキスト', hints: '休憩ヒント' },
+          webhook: { title: 'Webhook', desc: 'フェーズ完了時にこのURLへJSONイベントを送信（任意）。', placeholder: 'https://…' },
+        },
+      },
+      es: {
+        pill: { focus: 'Enfoque', break: 'Pausa', long: 'Pausa larga', idle: 'Enfoque' },
+        dialog: {
+          title: 'Temporizador de enfoque', start: 'Iniciar', pause: 'Pausar', skip: 'Saltar fase', reset: 'Reiniciar día',
+          rounds: 'Rondas de enfoque hoy', focusTime: 'Tiempo de enfoque hoy', sessionTime: 'Sesión en curso',
+          nextIsLong: 'Pausa larga tras esta ronda', toastFocus: 'Enfoque completo — pausa iniciada.', toastBreak: 'Pausa terminada — vuelve el enfoque.',
+          goal: 'Meta diaria', streak: 'Racha', week: 'Últimos 7 días',
+        },
+        settings: {
+          durations: { title: 'Duraciones pomodoro', desc: 'Minutos de enfoque, pausa corta, pausa larga y rondas antes de la pausa larga.', focus: 'Enfoque', break: 'Pausa', long: 'Larga', rounds: 'Rondas' },
+          auto: { title: 'Iniciar fases automáticamente', desc: 'Continuar a la siguiente fase sin clic.', all: 'Todas', break: 'Solo pausas', off: 'Manual' },
+          signal: { title: 'Señal de cambio de fase', desc: 'Pitido y notificación opcional al completar una fase.', sound: 'Pitido', desktop: 'Notificación', preview: 'Escuchar' },
+          goal: { title: 'Meta diaria', desc: 'Rondas de enfoque que quieres completar cada día.', label: 'rondas/día' },
+          agent: { title: 'Integración con agente', desc: 'El modelo ve tu enfoque y sugiere una pausa al terminar la ronda.', context: 'Contexto de enfoque', hints: 'Aviso de pausa' },
+          webhook: { title: 'Webhook', desc: 'Envía un evento JSON a esta URL al completar una fase (opcional).', placeholder: 'https://…' },
+        },
+      },
+      fr: {
+        pill: { focus: 'Focus', break: 'Pause', long: 'Longue pause', idle: 'Focus' },
+        dialog: {
+          title: 'Minuteur de focus', start: 'Démarrer', pause: 'Pause', skip: 'Passer la phase', reset: 'Réinitialiser le jour',
+          rounds: 'Sessions de focus aujourd’hui', focusTime: 'Temps de focus aujourd’hui', sessionTime: 'Session en cours',
+          nextIsLong: 'Longue pause après ce round', toastFocus: 'Focus terminé — pause lancée.', toastBreak: 'Pause finie — retour au focus.',
+          goal: 'Objectif du jour', streak: 'Série', week: '7 derniers jours',
+        },
+        settings: {
+          durations: { title: 'Durées pomodoro', desc: 'Minutes de focus, pause courte, longue pause et rounds avant la longue pause.', focus: 'Focus', break: 'Pause', long: 'Longue', rounds: 'Rounds' },
+          auto: { title: 'Démarrer les phases automatiquement', desc: 'Passer à la phase suivante sans clic.', all: 'Toutes', break: 'Pauses seulement', off: 'Manuel' },
+          signal: { title: 'Signal de changement de phase', desc: 'Bip et notification optionnelle à la fin d’une phase.', sound: 'Bip', desktop: 'Notification', preview: 'Écouter' },
+          goal: { title: 'Objectif du jour', desc: 'Rounds de focus à terminer chaque jour.', label: 'rounds/jour' },
+          agent: { title: 'Intégration agent', desc: 'Le modèle voit votre focus et suggère une pause en fin de round.', context: 'Contexte de focus', hints: 'Indice de pause' },
+          webhook: { title: 'Webhook', desc: 'Envoie un événement JSON à cette URL à la fin d’une phase (optionnel).', placeholder: 'https://…' },
+        },
+      },
+      pt: {
+        pill: { focus: 'Foco', break: 'Pausa', long: 'Pausa longa', idle: 'Foco' },
+        dialog: {
+          title: 'Temporizador de foco', start: 'Iniciar', pause: 'Pausar', skip: 'Pular fase', reset: 'Redefinir dia',
+          rounds: 'Rodadas de foco hoje', focusTime: 'Tempo de foco hoje', sessionTime: 'Sessão em andamento',
+          nextIsLong: 'Pausa longa após esta rodada', toastFocus: 'Foco concluído — pausa iniciada.', toastBreak: 'Pausa encerrada — volte ao foco.',
+          goal: 'Meta diária', streak: 'Sequência', week: 'Últimos 7 dias',
+        },
+        settings: {
+          durations: { title: 'Durações pomodoro', desc: 'Minutos de foco, pausa curta, pausa longa e rodadas antes da pausa longa.', focus: 'Foco', break: 'Pausa', long: 'Longa', rounds: 'Rodadas' },
+          auto: { title: 'Iniciar fases automaticamente', desc: 'Continuar para a próxima fase sem clique.', all: 'Todas', break: 'Só pausas', off: 'Manual' },
+          signal: { title: 'Sinal de mudança de fase', desc: 'Bipe e notificação opcional ao concluir uma fase.', sound: 'Bipe', desktop: 'Notificação', preview: 'Ouvir' },
+          goal: { title: 'Meta diária', desc: 'Rodadas de foco que você quer concluir por dia.', label: 'rodadas/dia' },
+          agent: { title: 'Integração com agente', desc: 'O modelo vê seu foco e sugere uma pausa ao fim da rodada.', context: 'Contexto de foco', hints: 'Aviso de pausa' },
+          webhook: { title: 'Webhook', desc: 'Envia um evento JSON para esta URL ao concluir uma fase (opcional).', placeholder: 'https://…' },
+        },
+      },
     };
 
     const NOTIFICATION_TEXTS = {
       en: { title: 'Pomodoro', focusDone: 'Focus finished — time for a break.', breakDone: 'Break finished — back to focus.' },
       de: { title: 'Pomodoro', focusDone: 'Fokus beendet — Zeit für die Pause.', breakDone: 'Pause beendet — zurück zum Fokus.' },
       zh: { title: '番茄钟', focusDone: '专注结束 — 该休息了。', breakDone: '休息结束 — 回到专注。' },
+      ru: { title: 'Помодоро', focusDone: 'Фокус завершён — время перерыва.', breakDone: 'Перерыв окончен — снова фокус.' },
+      ja: { title: 'ポモドーロ', focusDone: '集中終了 — 休憩の時間です。', breakDone: '休憩終了 — 集中に戻ります。' },
+      es: { title: 'Pomodoro', focusDone: 'Enfoque terminado — hora de la pausa.', breakDone: 'Pausa terminada — vuelve el enfoque.' },
+      fr: { title: 'Pomodoro', focusDone: 'Focus terminé — place à la pause.', breakDone: 'Pause finie — retour au focus.' },
+      pt: { title: 'Pomodoro', focusDone: 'Foco concluído — hora da pausa.', breakDone: 'Pausa encerrada — volte ao foco.' },
     };
 
     // The DSH locale service resolves FLAT dot-keys (e.g. "dialog.title"), not nested
@@ -96,7 +186,8 @@ window.__ModuleLoader__.load({
       config: DEFAULT_CONFIG, now: Date.now(),
     };
     const listeners = new Set();
-    let notifyTexts = NOTIFICATION_TEXTS.en;
+    let readLocale = () => 'en';
+    function notifTexts() { return NOTIFICATION_TEXTS[readLocale()] || NOTIFICATION_TEXTS.en; }
 
     function notify() { for (const l of listeners) l(); }
 
@@ -127,7 +218,7 @@ window.__ModuleLoader__.load({
     function announce(completedPhase) {
       if (state.config.sound) beep();
       if (state.config.desktopNotifications && typeof window.Notification !== 'undefined' && window.Notification.permission === 'granted') {
-        try { new window.Notification(notifyTexts.title, { body: completedPhase === 'focus' ? notifyTexts.focusDone : notifyTexts.breakDone }); } catch { /* silent */ }
+        try { const nt = notifTexts(); new window.Notification(nt.title, { body: completedPhase === 'focus' ? nt.focusDone : nt.breakDone }); } catch { /* silent */ }
       }
     }
 
@@ -482,11 +573,12 @@ window.__ModuleLoader__.load({
       inject: ['slots', 'locale', 'configForms'],
       apply(ctx) {
         ctx.effect(() => ctx.locale.register(NS, FLAT_DICTS));
-        try {
-          const snap = ctx.locale.getSnapshot();
-          const id = String((snap && (snap.locale || snap.id || snap.current)) || '');
-          notifyTexts = NOTIFICATION_TEXTS[id.startsWith('de') ? 'de' : id.startsWith('zh') ? 'zh' : 'en'];
-        } catch { notifyTexts = NOTIFICATION_TEXTS.en; }
+        readLocale = () => {
+          try {
+            const snap = ctx.locale.getSnapshot();
+            return String((snap && (snap.locale || snap.id || snap.current)) || 'en').split('-')[0];
+          } catch { return 'en'; }
+        };
 
         ctx.effect(() => {
           const id = window.setInterval(() => { state = { ...state, now: Date.now() }; notify(); poll(); }, 1000);
