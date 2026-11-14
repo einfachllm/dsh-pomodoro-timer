@@ -1,6 +1,6 @@
 {
   "meta": {
     "title": "Pomodoro-Timer",
-    "description": "Fokus-Timer im Composer-Dock mit Pomodoro-Tracking: Runden, Pausenphasen und Sitzungszeit."
+    "description": "Fokus-Timer im Composer-Dock: persistentes Tages-Tracking mit Ziel, Serie und Wochenchart, einstellbare Längen, Phasenwechsel-Signale und Agent-Tools (Status/Steuerung/Statistik)."
   }
 }

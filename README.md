@@ -46,7 +46,7 @@ The mascot keeps its full face at dialog size and degrades to a clean silhouette
 - **Goals & streaks** — configurable daily goal, current streak, and a last-7-days bar chart in the dialog.
 - **Phase-change signals** — short beep (with a Preview button), optional desktop notification, and an in-app toast when a phase completes.
 - **Agent integration** — the model can see your focus state (opt-out), optionally gets a break hint when a round ends (opt-in), and a webhook POST fires on natural phase completion.
-- **Settings** (General section): durations, rounds before long break, automatic start, signals, daily goal, agent integration, webhook. UI in English, German, and Chinese.
+- **Settings** (General section): durations, rounds before long break, automatic start, signals, daily goal, agent integration, webhook. UI in eight languages: English, German, Chinese, Russian, Japanese, Spanish, French, and Portuguese.
 - **Agent tools** — `pomodoro_status`, `pomodoro_control`, `pomodoro_stats`. UI buttons and tools run the same Host-owned state machine.
 
 ## Requirements
@@ -93,7 +93,7 @@ Settings → General:
 
 ## Deutsch
 
-Ein DeepSeek-Harness-Bundle mit Pomodoro-Fokus-Timer im Composer-Dock: Kawaii-Tomaten-Pill unterm Eingabefeld, Fokus-Dialog mit Fortschrittsring und Wochenchart, persistente Tages-Tracks (Runden, Fokuszeit, Serie, Ziel), einstellbare Längen in den allgemeinen Einstellungen, Signalton/Desktop-Benachrichtigung/In-App-Toast beim Phasenwechsel sowie drei Agent-Tools (`pomodoro_status`, `pomodoro_control`, `pomodoro_stats`). Oberfläche auf Deutsch, Englisch und Chinesisch.
+Ein DeepSeek-Harness-Bundle mit Pomodoro-Fokus-Timer im Composer-Dock: Kawaii-Tomaten-Pill unterm Eingabefeld, Fokus-Dialog mit Fortschrittsring und Wochenchart, persistente Tages-Tracks (Runden, Fokuszeit, Serie, Ziel), einstellbare Längen in den allgemeinen Einstellungen, Signalton/Desktop-Benachrichtigung/In-App-Toast beim Phasenwechsel sowie drei Agent-Tools (`pomodoro_status`, `pomodoro_control`, `pomodoro_stats`). Oberfläche in acht Sprachen: Deutsch, Englisch, Chinesisch, Russisch, Japanisch, Spanisch, Französisch und Portugiesisch.
 
 Installation über den Plugin-Manager des Profils (npm-Spec `@einfachllm/dsh-pomodoro-timer`) oder über den Discover-Index, danach die Weboberfläche neu laden. Einstellungen → Allgemein → Pomodoro-Zeilen.
 

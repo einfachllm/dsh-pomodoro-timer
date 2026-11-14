@@ -1,6 +1,6 @@
 {
   "meta": {
     "title": "Pomodoro timer",
-    "description": "Focus timer in the composer dock with Pomodoro tracking: rounds, break phases, and session time."
+    "description": "Focus timer in the composer dock: persistent daily tracking with goal, streak and weekly chart, configurable lengths, phase-change signals, and agent tools (status/control/stats)."
   }
 }
