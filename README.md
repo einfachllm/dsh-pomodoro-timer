@@ -48,6 +48,7 @@ The mascot keeps its full face at dialog size and degrades to a clean silhouette
 - **Agent integration** — the model can see your focus state (opt-out), optionally gets a break hint when a round ends (opt-in), and a webhook POST fires on natural phase completion.
 - **Settings** (General section): durations, rounds before long break, automatic start, signals, daily goal, agent integration, webhook. UI in eight languages: English, German, Chinese, Russian, Japanese, Spanish, French, and Portuguese.
 - **Agent tools** — `pomodoro_status`, `pomodoro_control`, `pomodoro_stats`. UI buttons and tools run the same Host-owned state machine.
+- **Protected page API** — the HTTP bridge enforces DSH's Host/Origin fence and browser authentication on every request; POSTs must be `application/json`.
 
 ## Requirements
 

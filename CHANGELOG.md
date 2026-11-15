@@ -3,6 +3,12 @@
 All notable changes to `@einfachllm/dsh-pomodoro-timer` are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.4.1] — 2026-11-15
+
+### Security
+- The page HTTP bridge (`/pomodoro-timer/api`) now enforces DSH's access checks: every request passes `ctx.connection.requestRejection` (Host/Origin fence plus browser authentication) before any state is read or changed, so web pages opened in the browser can no longer call it cross-site.
+- POST requests must carry `Content-Type: application/json` (415 otherwise), forcing a CORS preflight on cross-site calls. The bundled client already sends this header; no UI change.
+
 ## [1.4.0] — 2026-11-13
 
 ### Added

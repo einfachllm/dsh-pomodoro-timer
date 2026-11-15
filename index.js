@@ -18,8 +18,8 @@ export const Config = z.object({
   agentContext: z.boolean().default(true).volatile(),
 });
 
-/** Services the Host half needs: the HTTP bridge to the page and the tool registry. */
-export const inject = ['webServer', 'tools'];
+/** Services the Host half needs: the HTTP bridge to the page, its trust fence, and the tool registry. */
+export const inject = ['webServer', 'tools', 'connection'];
 
 const ROUTE = '/pomodoro-timer/api';
 const CONTROL_ACTIONS = ['start', 'pause', 'skip', 'reset'];
@@ -358,8 +358,16 @@ export function apply(ctx, config) {
         res.end(JSON.stringify(payload));
       };
       try {
+        // DSH trust fence: Host/Origin checks plus browser authentication, so
+        // web pages opened in the browser cannot call this route cross-site.
+        const rejection = ctx.connection.requestRejection(req);
+        if (rejection !== undefined) return respond(rejection, { error: rejection === 401 ? 'unauthorized' : 'forbidden' });
         if (req.method === 'GET' || req.method === 'HEAD') return respond(200, status());
         if (req.method === 'POST') {
+          // JSON-only media type: cross-site POSTs then need a CORS preflight
+          // this route never answers, so browsers block them before dispatch.
+          const mediaType = String(req.headers['content-type'] || '').split(';')[0].trim().toLowerCase();
+          if (mediaType !== 'application/json') return respond(415, { error: 'content-type must be application/json' });
           const body = await new Promise((resolve, reject) => {
             const chunks = [];
             req.on('data', (c) => chunks.push(c));
